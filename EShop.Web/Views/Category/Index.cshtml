@@ -1,17 +1,25 @@
 ﻿@model List<EShop.Entities.Category>
 @{
     ViewBag.Title = "Index";
-   
+
 }
 
 <h2>Index</h2>
-<h1>Category Name:</h1>
 
-@foreach (var item in Model)
+@if (Model.Count == 0)
 {
-   
+    <h1 style="color:red">No match</h1>
+}
+else
+{
+    <h1>Category Name:</h1>
+    foreach (var item in Model)
+    {
 
-    <nav> @item.Name </nav>
 
 
+        <nav> @item.Name </nav>
+
+
+    }
 }

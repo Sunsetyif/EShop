@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EShop.Services
 {
-    public class CategoryServices
+    public class CategoryService
     {
         public void UpdateCategory(Category category)
         {

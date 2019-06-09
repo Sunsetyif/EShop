@@ -10,7 +10,7 @@ namespace EShop.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        CategoryServices categoryService = new CategoryServices();
+        CategoryService categoryService = new CategoryService();
 
         [HttpGet]
         public ActionResult Index()
