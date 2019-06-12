@@ -10,8 +10,10 @@
 <form id="createProduct">
     <label>Category</label>
     <select name="CategoryID">
+
         @foreach (var category in Model)
         {
+
             <option value="@category.ID">@category.Name</option>
         }
 
@@ -24,8 +26,13 @@
     <label>Price</label>
     <input name="Price" />
     <button id="saveBtn" type="button">Save</button>
-    <input name"Image" type="file" accept=".png .jpg" />
-    <button id="imageUpload" type="submit">Save</button>
+
+
+    <input name"ImageURL" type="hidden" />
+    <input id="imageUpload" name="Image" type="file" accept=".png, .jpg">
+    <div class="thumb">
+        <img id="productImage" />
+    </div>
 </form>
 
 
@@ -41,11 +48,12 @@
             .done(function (response) {
                 $("#tableContainer").html(response);
                 $("#actionContainer").html("");
+                //$(#ImageURL).val(response.html)
 
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
 
             });
     });
-    
+
 </script>

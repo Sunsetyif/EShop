@@ -2,7 +2,8 @@
 @{
     ViewBag.Title = "ProductTable";
 }
-
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Content/jquery.cookies.js"></script>
 <div>
     <form method="post">
         <input id="searchTxt" name="Search" />
@@ -50,6 +51,8 @@ else
                         <td>
                             <button class="editBtn" data-id="@product.ID">Edit</button>
                             <button class="deleteBtn" data-id="@product.ID">Delete</button>
+                            <button class="addtoCart" data-id="@product.ID">Add to Cart</button>
+
                         </td>
                     </tr>
                 }
@@ -113,23 +116,46 @@ else
             });
     });
     $(".deleteBtn").click(function () {
-        var confirmDel = confirm("Delete?");
-        if (confirmDel) {
-            $.ajax({
-                type: 'POST',
-                url: "/Product/Delete",
-                data: {
-                    ID: $(this).attr('data-id')
+
+        swal({
+            title: "Confirm?",
+            text: "Delete this product?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Product/Delete",
+                        data: {
+                            ID: $(this).attr('data-id')
+                        }
+                    })
+                        .done(function (response) {
+                            $("#tableContainer").html(response);
+                            swal("Record deleted succefully", {
+                                icon: "success",
+                            });
+
+                        })
+                        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+
+                        });
                 }
-            })
-                .done(function (response) {
-                    $("#tableContainer").html(response);
+            });
+    });
+    var products = [];
+    //AddtoCard
+    $(".addtoCart").click(function () {
+        var productID = $(this).attr('data-id');
 
-                })
-                .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        products.push(productID);
 
-                });
-        }
+        $.cookie('CartProducts', products.join('-'));
 
+        alert("Product added to card");
     });
 </script>

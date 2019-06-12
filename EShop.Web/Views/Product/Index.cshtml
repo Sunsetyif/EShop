@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Index";
 }
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Content/jquery.cookies.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div id="tableContainer">
     @{
         Html.RenderAction("ProductTable");
@@ -9,5 +12,6 @@
     }
 </div>
 <div id="actionContainer">
-    
+
 </div>
+<script src="~/Content/jquery.cookies.js"></script>

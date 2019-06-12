@@ -39,12 +39,21 @@ namespace EShop.Services
                 
             }
         }
+        public List<Product> GetProducts(List<int>IDs)
+        {
+
+            using (var context = new EShopContext())
+            {
+                return context.Products.Where(product => IDs.Contains(product.ID)).ToList();
+
+            }
+        }
         public Product GetProduct(int ID)
         {
             using (var context = new EShopContext())
             {
 
-                return context.Products.Find(ID);
+                return context.Products.Where(x=>x.ID==ID).Include(x=>x.Category).FirstOrDefault();
             }
         }
         public void DeleteProduct(int ID)

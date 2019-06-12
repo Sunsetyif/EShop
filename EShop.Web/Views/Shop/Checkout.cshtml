@@ -1,0 +1,29 @@
+﻿@model EShop.Web.ViewModels.CheckoutViewModel
+@{
+    decimal sumOrder = 0;
+}
+
+@if (Model!=null)
+{
+    if(Model.CartProducts!=null && Model.CartProducts.Count>0)
+    {
+        <div>
+            @foreach (var product in Model.CartProducts)
+            {
+                var productQuantity = Model.CartProductIDs.Where(productID => productID == product.ID).Count();
+                sumOrder = sumOrder + (productQuantity * product.Price);
+                <div>
+                   Name: @product.Name - Price: @product.Price - Quantity: @productQuantity Total Price: @(product.Price*productQuantity)
+                </div>
+            }
+        </div>
+        <div>
+            <br /> 
+            Total Bill : @sumOrder;
+        </div>
+    }
+    else
+    {
+        <div>No Products in Cart.</div>
+    }
+}
