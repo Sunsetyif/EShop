@@ -1,10 +1,21 @@
-﻿@{
+﻿@model List<EShop.Entities.Category>
+@{
     ViewBag.Title = "Create";
 }
 
 <h2>Create Product</h2>
 
-<form method="post">
+
+
+<form id="createProduct">
+    <label>Category</label>
+    <select name="CategoryID">
+        @foreach (var category in Model)
+        {
+            <option value="@category.ID">@category.Name</option>
+        }
+
+    </select>
 
     <label>Name</label>
     <input name="Name" />
@@ -12,5 +23,29 @@
     <input name="Description" />
     <label>Price</label>
     <input name="Price" />
-    <button type="submit">Save</button>
+    <button id="saveBtn" type="button">Save</button>
+    <input name"Image" type="file" accept=".png .jpg" />
+    <button id="imageUpload" type="submit">Save</button>
 </form>
+
+
+
+<script>
+    $("#saveBtn").click(function () {
+        $.ajax({
+            type: "POST",
+            url: '/Product/Create',
+            data: $("#createProduct").serialize()
+
+        })
+            .done(function (response) {
+                $("#tableContainer").html(response);
+                $("#actionContainer").html("");
+
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+
+            });
+    });
+    
+</script>

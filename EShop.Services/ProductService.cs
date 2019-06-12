@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace EShop.Services
 {
@@ -22,6 +23,8 @@ namespace EShop.Services
         {
             using (var context = new EShopContext())
             {
+                context.Entry(product.Category).State = System.Data.Entity.EntityState.Unchanged;
+
                 context.Products.Add(product);
                 context.SaveChanges();
             }
@@ -29,10 +32,11 @@ namespace EShop.Services
         }
         public List<Product> GetProducts()
         {
+          
             using (var context = new EShopContext())
             {
-
-                return context.Products.ToList();
+                return context.Products.Include(x=>x.Category).ToList();
+                
             }
         }
         public Product GetProduct(int ID)

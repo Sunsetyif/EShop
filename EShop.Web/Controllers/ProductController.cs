@@ -1,5 +1,6 @@
 ﻿using EShop.Entities;
 using EShop.Services;
+using EShop.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,13 @@ namespace EShop.Web.Controllers
         {
             return View();
         }
-        [HttpGet]
+        
         public ActionResult ProductTable(string Search)
         {
             List<Product> products = productService.GetProducts();
             if(string.IsNullOrEmpty(Search) == false)
             { 
-            products = products.Where(p => p.Name != null && p.Name.Contains(Search)).ToList();
+            products = products.Where(p => p.Name != null && p.Name.ToLower().Contains(Search.ToLower())).ToList();
             }
             //foreach (var p in products)
             //{
@@ -31,16 +32,44 @@ namespace EShop.Web.Controllers
             //}
             return PartialView(products);
         }
-        [HttpGet]
+       [HttpGet]
         public ActionResult Create()
         {
-            return PartialView();
+            CategoryService categoryService = new CategoryService();
+            var categories = categoryService.GetCategories();
+            return PartialView(categories);
         }
         [HttpPost]
-        public ActionResult Create(Product product)
+        public ActionResult Create(NewCategoryViewModels model)
         {
-            productService.SaveProduct(product);
-            return View();
+            CategoryService categoryService = new CategoryService();
+            var newProduct = new Product();
+            newProduct.Name = model.Name;
+            newProduct.Description = model.Descrpiption;
+            newProduct.Price = model.Price;
+            newProduct.Category = categoryService.GetCategory(model.CategoryID);
+            
+            productService.SaveProduct(newProduct);
+            return RedirectToAction("ProductTable");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int ID)
+        {
+            var product = productService.GetProduct(ID);    
+            return PartialView(product);
+        }
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            productService.UpdateProduct(product);
+            return RedirectToAction("ProductTable");
+        }
+        [HttpPost]
+        public ActionResult Delete(int ID)
+        {
+            productService.DeleteProduct(ID);
+            return RedirectToAction("ProductTable");
         }
     }
 }

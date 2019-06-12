@@ -34,6 +34,15 @@ namespace EShop.Services
                 return context.Categories.ToList();
             }
         }
+        //Recommend products
+        //public List<Category> GetFeaturedCategories()
+        //{
+        //    using (var context = new EShopContext())
+        //    {
+
+        //        //return context.Categories.Where(x=>x.);
+        //    }
+        //}
         public Category GetCategory(int ID)
         {
             using (var context = new EShopContext())

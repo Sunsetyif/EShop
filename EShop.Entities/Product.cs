@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace EShop.Entities
 {
-  public  class Product : BaseEntity
+    public class Product : BaseEntity
     {
         public decimal Price { get; set; }
-
-        public Category Category { get; set; }
+      //  public string ImageURL { get; set; }
+        public virtual Category Category { get; set; }
     }
 }
