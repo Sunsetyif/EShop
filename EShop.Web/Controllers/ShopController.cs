@@ -24,7 +24,7 @@ namespace EShop.Web.Controllers
                 //List<int> pIDs = ids.Select(x => int.Parse(x)).ToList();
 
                 model.CartProductIDs = CartProductsCookie.Value.Split('-').Select(x => int.Parse(x)).ToList();
-                model.CartProducts = productService.GetProducts(model.CartProductIDs);
+                model.CartProducts = ProductService.Instance.GetProducts(model.CartProductIDs);
             }
             return View(model);
         }

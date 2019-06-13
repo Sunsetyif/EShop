@@ -1,47 +1,87 @@
-﻿@model List<EShop.Entities.Category>
-@{
-    ViewBag.Title = "Create";
-}
+﻿@model EShop.Web.ViewModels.NewProductViewModel
+    @{
+        ViewBag.Title = "Create";
+        var imgURL = "/Content/images/slide.png";
+    }
 
-<h2>Create Product</h2>
-
-
-
-<form id="createProduct">
-    <label>Category</label>
-    <select name="CategoryID">
-
-        @foreach (var category in Model)
-        {
-
-            <option value="@category.ID">@category.Name</option>
-        }
-
-    </select>
-
-    <label>Name</label>
-    <input name="Name" />
-    <label>Description</label>
-    <input name="Description" />
-    <label>Price</label>
-    <input name="Price" />
-    <button id="saveBtn" type="button">Save</button>
-
-
-    <input name"ImageURL" type="hidden" />
-    <input id="imageUpload" name="Image" type="file" accept=".png, .jpg">
-    <div class="thumb">
-        <img id="productImage" />
-    </div>
-</form>
+    <h2>Create Product</h2>
 
 
 
-<script>
+    <form id="createProduct">
+        <label>Category</label>
+        <select name="CategoryID">
+
+            @foreach (var category in Model.AvailableCategories)
+            {
+
+                <option value="@category.ID">@category.Name</option>
+            }
+
+        </select>
+
+        <label>Name</label>
+        <input name="Name" />
+        <label>Description</label>
+        <input name="Description" />
+        <label>Price</label>
+        <input name="Price" />
+        <div class="col-md-4">
+            <div class="thumb">
+                <img class="img-thumbnail img-fluid" id="productImage" src="@imgURL" />
+            </div>
+        </div>
+        <button id="saveBtn" type="button">Save</button>
+        <button id="cancelBtn" type="button">Cancel</button>
+
+
+
+        <div class="form-group">
+            <label>Image</label>
+            <input type="hidden" id="ImageURL" name="ImageURL" />
+            <input class="form-control" id="imageUpload" name="Image" type="file" accept=".png, .jpg" />
+        </div>
+        <div class="thumb">
+            <img id="productImage" />
+        </div>
+    </form>
+
+
+
+    <script>
+        $("#imageUpload").change(function () {
+		var element = this;
+		var formData = new FormData();
+		var totalFiles = element.files.length;
+		for (var i = 0; i < totalFiles; i++) {
+			var file = element.files[i];
+			formData.append("Photo", file);
+		}
+		$.ajax({
+			type: 'POST',
+			url: '@Url.Action("UploadImage", "Shared")',
+			dataType: 'json',
+			data: formData,
+			contentType: false,
+			processData: false
+		})
+        .done(function (response) {
+        	console.log(response);
+        	if (response.Success) {
+        		$("#ImageURL").val(response.ImageURL);
+        		$("#productImage").attr("src", response.ImageURL);
+        	}
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+        	alert("FAIL");
+        });
+	});
+
+
     $("#saveBtn").click(function () {
         $.ajax({
             type: "POST",
-            url: '/Product/Create',
+            url:'@Url.Action("Create","Product")' /*'/Product/Create'*/,
             data: $("#createProduct").serialize()
 
         })
@@ -56,4 +96,9 @@
             });
     });
 
-</script>
+
+    $("#cancelBtn").click(function () {
+        $("#actionContainer").html("");
+    });
+
+    </script>

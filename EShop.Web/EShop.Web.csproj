@@ -192,6 +192,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\NewProductViewModel.cs" />
+    <Compile Include="ViewModels\ProductSearchViewModels.cs" />
     <Compile Include="ViewModels\ShopViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +206,7 @@
     <Content Include="Content\images\logo-removebg-preview.png" />
     <Content Include="Content\images\logocite_photo-resizer.ru %281%29.png" />
     <Content Include="Content\images\slide.png" />
-    <Content Include="Content\jquery.cookies.js" />
+    <Content Include="Content\jquery_cookies.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -324,9 +326,12 @@
       <Name>EShop.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\EShop.Services\EShop.Services.csproj">
-      <Project>{EF93BC1B-589B-4052-A7A7-4BAC7961963A}</Project>
+      <Project>{ef93bc1b-589b-4052-a7a7-4bac7961963a}</Project>
       <Name>EShop.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -11,6 +11,21 @@ namespace EShop.Services
 {
    public class ProductService
     {
+        public static ProductService Instance
+        {
+            get
+            {
+
+                if (instance == null) instance = new ProductService();
+                return instance;
+            }
+        }
+ 
+        private static ProductService instance { get; set; }
+        public ProductService()
+        {
+
+        }
         public void UpdateProduct(Product product)
         {
             using (var context = new EShopContext())
@@ -30,13 +45,13 @@ namespace EShop.Services
             }
 
         }
-        public List<Product> GetProducts()
+        public List<Product> GetProducts(int pageNo)
         {
-          
+            int pageSize = 3;
             using (var context = new EShopContext())
             {
-                return context.Products.Include(x=>x.Category).ToList();
-                
+                //  return context.Products.OrderBy(x=>x.ID).Skip((pageNo-1)*pageSize).Take(pageSize).Include(x=>x.Category).ToList();
+                return context.Products.Include(x => x.Category).ToList();
             }
         }
         public List<Product> GetProducts(List<int>IDs)

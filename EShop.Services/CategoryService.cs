@@ -10,6 +10,23 @@ namespace EShop.Services
 {
     public class CategoryService
     {
+        public static CategoryService Instance
+        {
+            get
+            {
+
+                if (instance == null) instance = new CategoryService();
+                return instance;
+            }
+        }
+
+        private static CategoryService instance { get; set; }
+        public CategoryService()
+        {
+
+        }
+
+
         public void UpdateCategory(Category category)
         {
             using (var context = new EShopContext())
@@ -26,6 +43,15 @@ namespace EShop.Services
                 context.SaveChanges();
             }
         }
+        public List<Category> GetAllCategories()
+        {
+            using (var context = new EShopContext())
+            {
+                return context.Categories
+                        .ToList();
+            }
+        }
+
         public List<Category> GetCategories()
         {
             using (var context = new EShopContext())
