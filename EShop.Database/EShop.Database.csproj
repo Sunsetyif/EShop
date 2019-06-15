@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201906130826418_configurationstable.Designer.cs">
       <DependentUpon>201906130826418_configurationstable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906141643264_addedServerSideValidation.cs" />
+    <Compile Include="Migrations\201906141643264_addedServerSideValidation.Designer.cs">
+      <DependentUpon>201906141643264_addedServerSideValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906142006481_pagination.cs" />
+    <Compile Include="Migrations\201906142006481_pagination.Designer.cs">
+      <DependentUpon>201906142006481_pagination.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +91,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906130826418_configurationstable.resx">
       <DependentUpon>201906130826418_configurationstable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906141643264_addedServerSideValidation.resx">
+      <DependentUpon>201906141643264_addedServerSideValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906142006481_pagination.resx">
+      <DependentUpon>201906142006481_pagination.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

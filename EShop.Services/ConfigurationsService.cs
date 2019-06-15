@@ -10,28 +10,50 @@ namespace EShop.Services
 {
     public class ConfigurationsService
     {
+        
+        #region Singleton
         public static ConfigurationsService Instance
         {
             get
             {
-
                 if (instance == null) instance = new ConfigurationsService();
+
                 return instance;
             }
         }
-
         private static ConfigurationsService instance { get; set; }
-        public ConfigurationsService()
+        private ConfigurationsService()
         {
-
         }
-        public Config GetConfig(string Key)
+        #endregion
+
+        //public Config GetConfig(string Key)
+        //{
+        //    using (var context = new EShopContext())
+        //    {
+        //        return context.Configurations.Find(Key);
+        //    }
+        //}
+
+        public int PageSize()
         {
             using (var context = new EShopContext())
             {
-                return context.Configurations.Where(x => x.Key == Key).FirstOrDefault();
+                var pageSizeConfig = context.Configurations.Find("PageSize");
+
+                return pageSizeConfig != null ? int.Parse(pageSizeConfig.Value) : 5;
             }
         }
-    }
 
+        public int ShopPageSize()
+        {
+            using (var context = new EShopContext())
+            {
+                var pageSizeConfig = context.Configurations.Find("ShopPageSize");
+
+                return pageSizeConfig != null ? int.Parse(pageSizeConfig.Value) : 6;
+            }
+        }
+
+    }
 }

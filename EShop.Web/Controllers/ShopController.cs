@@ -11,7 +11,7 @@ namespace EShop.Web.Controllers
     public class ShopController : Controller
     {
         // GET: Shop
-        ProductService productService = new ProductService();
+     //   ProductService productService = new ProductService();
 
         public ActionResult Checkout()
         {

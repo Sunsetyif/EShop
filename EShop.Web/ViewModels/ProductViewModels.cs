@@ -1,11 +1,20 @@
 ﻿using EShop.Entities;
+using EShop.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace EShop.Web.ViewModels
+namespace EShop.Web.Controllers
 {
+    public class ProductSearchViewModel
+    {
+        public List<Product> Products { get; set; }
+        public string SearchTerm { get; set; }
+
+        public Pager Pager { get; set; }
+    }
+
     public class NewProductViewModel
     {
         public string Name { get; set; }
@@ -16,6 +25,7 @@ namespace EShop.Web.ViewModels
 
         public List<Category> AvailableCategories { get; set; }
     }
+
     public class EditProductViewModel
     {
         public int ID { get; set; }
@@ -27,5 +37,11 @@ namespace EShop.Web.ViewModels
         public string ImageURL { get; set; }
 
         public List<Category> AvailableCategories { get; set; }
+    }
+
+
+    public class ProductViewModel
+    {
+        public Product Product { get; set; }
     }
 }

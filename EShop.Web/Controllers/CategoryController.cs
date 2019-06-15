@@ -1,5 +1,6 @@
 ﻿using EShop.Entities;
 using EShop.Services;
+using EShop.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,30 @@ namespace EShop.Web.Controllers
     public class CategoryController : Controller
     {
         CategoryService categoryService = new CategoryService();
+
+
+        public ActionResult CategoryTable(string search, int? pageNo)
+        {
+
+            CategorySearchViewModel model = new CategorySearchViewModel();
+            model.SearchTerm = search;
+
+            pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+
+            var totalRecords = CategoryService.Instance.GetCategoriesCount(search);
+            model.Categories = CategoryService.Instance.GetCategories(search, pageNo.Value);
+
+            if (model.Categories != null)
+            {
+                model.Pager = new Pager(totalRecords, pageNo, 3);   
+
+                return PartialView("_CategoryTable", model);
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+        }
 
         [HttpGet]
         public ActionResult Index()
