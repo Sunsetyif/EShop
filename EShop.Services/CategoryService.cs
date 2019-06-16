@@ -27,7 +27,13 @@ namespace EShop.Services
 
         }
 
-
+        public List<Category> GetFeaturedCategories()
+        {
+            using (var context = new EShopContext())
+            {
+                return context.Categories.Where(x => x.isFeatured).ToList();
+            }
+        }
         public void UpdateCategory(Category category)
         {
             using (var context = new EShopContext())
@@ -48,7 +54,7 @@ namespace EShop.Services
         {
             using (var context = new EShopContext())
             {
-                return context.Categories
+                return context.Categories.Include(x=>x.Products)
                         .ToList();
             }
         }

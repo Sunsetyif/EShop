@@ -1,0 +1,116 @@
+﻿@model EShop.Web.ViewModels.FilterProductsViewModel
+@{
+
+    var defaultImg = "/Content/images/default-image_493.png";
+}
+<div class="filter-shop clearfix">
+    <p class="showing-product float-right">
+        Showing @(((Model.Pager.CurrentPage - 1) * Model.Pager.PageSize) + 1 ) – @(((Model.Pager.CurrentPage - 1) * Model.Pager.PageSize) + (Model.Products.Count < Model.Pager.PageSize ? Model.Products.Count : Model.Pager.PageSize)) of @Model.Pager.TotalItems Products
+    </p>
+</div><!-- /.filte-shop -->
+@foreach (var product in Model.Products)
+{
+    var imageURL = string.IsNullOrEmpty(product.ImageURL) ? defaultImg : product.ImageURL;
+
+    <article class="card card-product">
+
+        <div class="card-body">
+            <div class="row">
+                <aside class="col-sm-6">
+                    <div class="img-wrap"><img alt="Image" src="@imageURL" /></div>
+
+                </aside> <!-- col.// -->
+                <article class="col-sm-6">
+                    @*<h4 class="title">Milcka</h4>*@
+                    <p class="font-weight-bold h4">@product.Name</p>
+                    <dl class="dlist-align">
+                        <dt>Brand:</dt>
+                        <dd>Milka</dd>
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="dlist-align">
+                        <dt>Flavor:</dt>
+                        <dd>Milk</dd>
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="dlist-align">
+                        <dt>Category:</dt>
+                        <dd>@*@product.Category.Name*@</dd>
+
+                    </dl>  <!-- item-property-hor .// -->
+                    <dl class="dlist-align">
+                        <dt>Price:</dt>
+                        <dd class="price">$@product.Price</dd>
+
+                    </dl>  <!-- item-property-hor .// -->
+                    <hr />
+                    <p>
+                        <a href="#" class="btn btn-primary"> Buy now </a>
+                        <a href="@Url.Action("Details", "Product", new {  ID = product.ID })" class="btn btn-secondary"> Details  </a>
+                    </p>
+                </article> <!-- col.// -->
+            </div> <!-- row.// -->
+        </div> <!-- card-body .// -->
+    </article> <!-- card product .// -->
+}
+@if (Model.Pager != null && Model.Pager.TotalPages > 1)
+{
+    <div class="product-pagination text-center clearfix">
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li class="prev">
+                    <a data-href="@Url.Action("FilterProducts", "Shop", new { pageNo = Model.Pager.CurrentPage - 1, sortBy = Model.SortBy, categoryID = Model.CategoryID })" class="pageDataLink"><i class="fa fa-angle-left"></i></a>
+                </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                string activeClass = Model.Pager.CurrentPage == page ? "active bg-info" : string.Empty;
+
+                <li class="@activeClass"><a data-href="@Url.Action("FilterProducts", "Shop", new { pageNo = page, sortBy = Model.SortBy, categoryID = Model.CategoryID })" title="" class="pageDataLink">@page</a></li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li><a data-href="@Url.Action("FilterProducts", "Shop", new { pageNo = Model.Pager.CurrentPage + 1, sortBy = Model.SortBy, categoryID = Model.CategoryID})" class="pageDataLink"><i class="fa fa-angle-right"></i></a></li>
+            }
+        </ul><!-- /.flat-pagination -->
+    </div>
+}
+
+<input type="hidden" id="SearchTerm" value="@Model.SearchTerm" />
+<input type="hidden" id="SortBy" value="@Model.SortBy" />
+<input type="hidden" id="CategoryID" value="@Model.CategoryID" />
+
+<script>
+    $(".pageDataLink").click(function () {
+        var url = $(this).attr("data-href");
+        if (url != "" || url != undefined) {
+            GetData(url);
+        }
+    });
+    var products;
+    $(".productAddToCart").click(function () {
+        var existingCookieData = $.cookie('CartProducts');
+        if (existingCookieData != undefined && existingCookieData != "" && existingCookieData != null) {
+            products = existingCookieData.split('-');
+        }
+        else {
+            products = [];
+        }
+        var productID = $(this).attr('data-id');
+        products.push(productID);
+        $.cookie('CartProducts', products.join('-'), { path: '/' });
+        updateCartProducts();
+        swal("Done", "Product Added to Cart!", "success");
+    });
+</script>
+<script>
+
+    $(".dataLink").click(function () {
+        var url = $(this).attr("data-href");
+        if (url != "" || url != undefined) {
+            GetData(url);
+        }
+    });
+
+</script>

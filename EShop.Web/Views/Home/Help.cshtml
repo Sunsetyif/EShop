@@ -5,3 +5,9 @@
 <h3>@ViewBag.Message</h3>
 
 <p>Use this area to provide additional information.</p>
+<h4>Newest products</h4>
+
+@{
+    Html.RenderAction("Products", "Widgets", new { isLatestProducts = true });
+}
+    

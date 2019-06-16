@@ -20,14 +20,14 @@ namespace EShop.Web.Controllers
             return View(model);
         }
 
-        public ActionResult About()
+        public ActionResult Help()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Delivery()
         {
             ViewBag.Message = "Your contact page.";
 

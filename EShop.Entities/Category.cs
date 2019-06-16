@@ -10,6 +10,6 @@ namespace EShop.Entities
     {
 
         public List<Product> Products { get; set; }
-       // public bool isFeatured { get; set; }
+        public bool isFeatured { get; set; }
     }
 }
