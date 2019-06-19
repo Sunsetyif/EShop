@@ -65,6 +65,16 @@ namespace EShop.Web.Models
     public class RegisterViewModel
     {
         [Required]
+       
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required]
+        
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }

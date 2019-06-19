@@ -27,13 +27,7 @@ namespace EShop.Services
         }
         #endregion
 
-        //public Config GetConfig(string Key)
-        //{
-        //    using (var context = new EShopContext())
-        //    {
-        //        return context.Configurations.Find(Key);
-        //    }
-        //}
+        
 
         public int PageSize()
         {

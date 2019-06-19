@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
-    
+    [Authorize(Roles = "admin")]
     public class CategoryController : Controller
     {
         CategoryService categoryService = new CategoryService();

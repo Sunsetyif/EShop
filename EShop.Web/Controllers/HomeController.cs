@@ -1,4 +1,5 @@
 ﻿using EShop.Services;
+using EShop.Web.Models;
 using EShop.Web.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class HomeController : Controller
     {
         CategoryService categoryService = new CategoryService();
@@ -33,5 +35,6 @@ namespace EShop.Web.Controllers
 
             return View();
         }
+        
     }
 }

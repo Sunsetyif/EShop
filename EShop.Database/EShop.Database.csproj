@@ -73,6 +73,14 @@
     <Compile Include="Migrations\201906161815325_FeatureCategory.Designer.cs">
       <DependentUpon>201906161815325_FeatureCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906171042018_AddEntitiesOrderandOrderItem.cs" />
+    <Compile Include="Migrations\201906171042018_AddEntitiesOrderandOrderItem.Designer.cs">
+      <DependentUpon>201906171042018_AddEntitiesOrderandOrderItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906181246146_addOrders.cs" />
+    <Compile Include="Migrations\201906181246146_addOrders.Designer.cs">
+      <DependentUpon>201906181246146_addOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -104,6 +112,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906161815325_FeatureCategory.resx">
       <DependentUpon>201906161815325_FeatureCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171042018_AddEntitiesOrderandOrderItem.resx">
+      <DependentUpon>201906171042018_AddEntitiesOrderandOrderItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906181246146_addOrders.resx">
+      <DependentUpon>201906181246146_addOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

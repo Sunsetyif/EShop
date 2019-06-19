@@ -1,0 +1,46 @@
+﻿@model EShop.Web.ViewModels.OrdersViewModel
+@{
+    ViewData["Title"] = "Your Requests";
+}
+<h2>@ViewData["Title"]</h2>
+<div>
+    <div class="panel-heading text-center">
+        <div class="panel-body">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>UserId</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var orders in Model.Orders)
+                    {
+                        <tr>
+                            <td>@orders.ID</td>
+                            <td>@orders.UserID</td>
+                            <td>@orders.OrderItems</td>
+                            <td>@orders.TotalAmount</td>
+                            @*<td>@orders.</td>*@
+                            <td>
+                                @*@if (d.RequestStatus == "closed")
+                                {
+                                    <a class="btn btn-primary" disabled="disabled">Closed</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-primary" asp-controller="Home" asp-action="CloseRequest" asp-route-ID=@d.RequestID>Close</a>
+                                }*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

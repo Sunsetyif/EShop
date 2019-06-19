@@ -180,6 +180,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -187,6 +188,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906162232286_InitialCreate.cs" />
+    <Compile Include="Migrations\201906162232286_InitialCreate.Designer.cs">
+      <DependentUpon>201906162232286_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906170955294_addnewpropforuser.cs" />
+    <Compile Include="Migrations\201906170955294_addnewpropforuser.Designer.cs">
+      <DependentUpon>201906170955294_addnewpropforuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -194,6 +204,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryViewModels.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModels.cs" />
     <Compile Include="ViewModels\ProductViewModels.cs" />
     <Compile Include="ViewModels\SharedViewModels.cs" />
     <Compile Include="ViewModels\ShopViewModels.cs" />
@@ -560,6 +571,9 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Widgets\Products.cshtml" />
     <Content Include="Views\Shop\FilterProducts.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Shop\MyOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -587,6 +601,14 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906162232286_InitialCreate.resx">
+      <DependentUpon>201906162232286_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906170955294_addnewpropforuser.resx">
+      <DependentUpon>201906170955294_addnewpropforuser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

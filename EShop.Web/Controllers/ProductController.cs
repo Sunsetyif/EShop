@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class ProductController : Controller
     {
         //ProductService productService = new ProductService();

@@ -22,7 +22,7 @@
                 </aside> <!-- col.// -->
                 <article class="col-sm-6">
                     @*<h4 class="title">Milcka</h4>*@
-                    <p class="font-weight-bold h4">@product.Name</p>
+                    <p class="font-weight-bold h4">@product.Name-@product.Description</p>
                     <dl class="dlist-align">
                         <dt>Brand:</dt>
                         <dd>Milka</dd>
@@ -31,11 +31,11 @@
                         <dt>Flavor:</dt>
                         <dd>Milk</dd>
                     </dl>  <!-- item-property-hor .// -->
-                    <dl class="dlist-align">
+                    @*<dl class="dlist-align">
                         <dt>Category:</dt>
-                        <dd>@*@product.Category.Name*@</dd>
+                        <dd>@product.Category.Name</dd>
 
-                    </dl>  <!-- item-property-hor .// -->
+                    </dl>   item-property-hor .//*@ 
                     <dl class="dlist-align">
                         <dt>Price:</dt>
                         <dd class="price">$@product.Price</dd>
@@ -43,7 +43,7 @@
                     </dl>  <!-- item-property-hor .// -->
                     <hr />
                     <p>
-                        <a href="#" class="btn btn-primary"> Buy now </a>
+                        <a href="#" class="btn btn-primary productAddToCart" data-id="@product.ID">Add to card</a>
                         <a href="@Url.Action("Details", "Product", new {  ID = product.ID })" class="btn btn-secondary"> Details  </a>
                     </p>
                 </article> <!-- col.// -->
@@ -80,7 +80,8 @@
 <input type="hidden" id="SearchTerm" value="@Model.SearchTerm" />
 <input type="hidden" id="SortBy" value="@Model.SortBy" />
 <input type="hidden" id="CategoryID" value="@Model.CategoryID" />
-
+<script src="~/Content/jquery_cookies.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $(".pageDataLink").click(function () {
         var url = $(this).attr("data-href");

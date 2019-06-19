@@ -14,74 +14,51 @@
 
                 </aside> <!-- col.// -->
                 <article class="col-sm-6">
-                    <h4 class="title">@Model.Product.Name</h4>
-                    <p class="font-weight-bold h4"></p>
-                    <dl class="dlist-align">
-                        <dt>Brand:</dt>
-                        <dd>Milka</dd>
-                    </dl>  <!-- item-property-hor .// -->
-                    <dl class="dlist-align">
-                        <dt>Flavor:</dt>
-                        <dd>Milk</dd>
-                    </dl>  <!-- item-property-hor .// -->
-                    <dl class="dlist-align">
-                        <dt>Category:</dt>
-                        <dd></dd>
 
-                    </dl>  <!-- item-property-hor .// -->
-                    <dl class="dlist-align">
-                        <dt>Price:</dt>
-                        <dd class="price">$</dd>
-
-                    </dl>  <!-- item-property-hor .// -->
+                    <em>Shipping:</em>  FREE Standard International Shipping
                     <hr />
+                    <em> Item location: </em> EUROPE, Lithuania
+
+
+                    <hr />
+                    <em>Payments:</em> <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+
+                    <hr />
+
+
                     <p>
-                        <a href="#" class="btn btn-primary"> Buy now </a>
-                        <a href="@Url.Action("Index","Home")" class="btn btn-primary"> Back to list </a>
+                        <a href="#" class="btn btn-primary">Add to card </a>
+                        <a href="@Url.Action("Index","Shop")" class="btn btn-secondary"> Back to list </a>
                     </p>
                 </article> <!-- col.// -->
-
-
-
-
-
-
             </div> <!-- row.// -->
         </div> <!-- card-body .// -->
     </article> <!-- card product .// -->
     <article class="card mt-3">
         <div class="card-body">
             <h4>Detail overview</h4>
+            <hr />
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia ididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi deserunt mollit anim id est laborum.
+
             </p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteurididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <h6>About product</h6>
+                <em> Name: </em>  @Model.Product.Name
+                <br />
+                <em> Description:</em> @Model.Product.Description
+                <br />
+                <em>Price:</em>  $@Model.Product.Price
+                <br />
             </p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <h6>About category of product</h6>
+                <em> Name:</em> @Model.Product.Category.Name
+                <br />
+                <em>Category:</em>  @Model.Product.Category.Description
+                <br />
+                <em>Featured:</em> @Model.Product.Category.isFeatured
             </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                te
-            </p>
+
         </div> <!-- card-body.// -->
     </article> <!-- card.// -->
     <br />
