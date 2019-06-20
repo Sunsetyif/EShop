@@ -9,17 +9,18 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
-    [Authorize(Roles ="admin")]
+    [Authorize(Roles = "admin")]
     public class ProductController : Controller
     {
         //ProductService productService = new ProductService();
        // CategoryService categoryService = new CategoryService();
         // GET: Product
+
         public ActionResult Index()
         {
             return View();
         }
-
+        
         public ActionResult ProductTable(string search, int? pageNo)
         {
             var pageSize = ConfigurationsService.Instance.PageSize();
@@ -36,7 +37,7 @@ namespace EShop.Web.Controllers
 
             return PartialView(model);
         }
-
+       
         [HttpGet]
         public ActionResult Create()
         {
@@ -46,7 +47,7 @@ namespace EShop.Web.Controllers
 
             return PartialView(model);
         }
-
+        
         [HttpPost]
         public ActionResult Create(NewProductViewModel model)
         {
@@ -60,7 +61,7 @@ namespace EShop.Web.Controllers
             ProductService.Instance.SaveProduct(newProduct);
             return RedirectToAction("ProductTable");
         }
-
+       
         [HttpGet]
         public ActionResult Edit(int ID)
         {
@@ -79,7 +80,7 @@ namespace EShop.Web.Controllers
 
             return PartialView(model);
         }
-
+        
         [HttpPost]
         public ActionResult Edit(EditProductViewModel model)
         {
@@ -101,7 +102,7 @@ namespace EShop.Web.Controllers
 
             return RedirectToAction("ProductTable");
         }
-
+        
         [HttpPost]
         public ActionResult Delete(int ID)
         {

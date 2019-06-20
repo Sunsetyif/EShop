@@ -8,9 +8,11 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
-    [Authorize(Roles = "admin")]
+   
     public class WidgetsController : Controller
     {
+        //Populyarity = LastIdsAdded
+        //Newest = products.OrderByDescending(x => x.Price).ToList();
         // GET: Widgets
         public ActionResult Products(bool isLatestProducts, int? CategoryID)
         {

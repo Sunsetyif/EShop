@@ -27,7 +27,7 @@ namespace EShop.Services
         }
         #endregion
 
-        
+       
 
         public int PageSize()
         {
@@ -48,6 +48,9 @@ namespace EShop.Services
                 return pageSizeConfig != null ? int.Parse(pageSizeConfig.Value) : 6;
             }
         }
+
+
+
 
     }
 }

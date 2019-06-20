@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EShop.Web.Models.ApplicationUser>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="box-title">
+            <b>Users with Roles</b>
+
+        </h3>
+    </div>
+
+    <!-- /.box-header -->
+    <div class="panel-body">
+        <table class="table table-striped" id="UsersWithRoles">
+            <thead class="thead-dark">
+                <tr>
+
+                    <td><b>Name</b></td>
+                    <td><b>Email</b></td>
+                    <td><b>Address</b></td>
+                    <td><b>Roles</b></td>
+                    <td><b>Edit</b></td>
+
+                </tr>
+            </thead>
+            @foreach (var user in Model)
+            {
+            <tr>
+
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.Address</td>
+                <td>@string.Join(" ", user.Roles.Select(t => t.RoleId))</td>
+                <td><a href="@Url.Action("EditRole", "Home", new { ID = user.Id })" class="btn btn-secondary"> Details  </a></td>
+
+
+
+            </tr>
+
+            }
+        </table>
+
+    </div>
+
+    <div class="panel-footer">
+        <p class="box-title"><b>Total Users till @String.Format("{0 : dddd, MMMM d, yyyy}", DateTime.Now)  : </b><span class="label label-primary">@Model.Count()</span></p>
+    </div>
+</div>
+

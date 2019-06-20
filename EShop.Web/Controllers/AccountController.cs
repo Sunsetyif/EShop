@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using EShop.Web.Models;
+using System.Web.Security;
 
 namespace EShop.Web.Controllers
 {
@@ -87,7 +88,7 @@ namespace EShop.Web.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
+                    ModelState.AddModelError("", "Failed login attempt.");
                     return View(model);
             }
         }
@@ -393,9 +394,9 @@ namespace EShop.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Shop");
         }
-
+      
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]

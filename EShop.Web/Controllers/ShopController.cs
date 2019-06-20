@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace EShop.Web.Controllers
 {
@@ -58,8 +59,10 @@ namespace EShop.Web.Controllers
             }
             return View(model);
         }
+
         public ActionResult Index(string searchTerm, int? minimumPrice, int? maximumPrice, int? categoryID, int? sortBy, int? pageNo)
         {
+          
             var pageSize = ConfigurationsService.Instance.ShopPageSize();
 
             ShopViewModel model = new ShopViewModel();

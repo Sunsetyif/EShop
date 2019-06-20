@@ -208,6 +208,7 @@
     <Compile Include="ViewModels\ProductViewModels.cs" />
     <Compile Include="ViewModels\SharedViewModels.cs" />
     <Compile Include="ViewModels\ShopViewModels.cs" />
+    <Compile Include="ViewModels\Users_in_Role_ViewModel.cs" />
     <Compile Include="ViewModels\WidgetVIewModels.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -574,6 +575,8 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Shop\MyOrders.cshtml" />
+    <Content Include="Views\Home\UsersWithRoles.cshtml" />
+    <Content Include="Views\Home\EditRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

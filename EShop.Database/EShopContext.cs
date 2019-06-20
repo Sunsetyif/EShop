@@ -19,5 +19,13 @@ namespace EShop.Database
         public DbSet<Config> Configurations { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+              .Map(m => m.Requires("IsDeleted").HasValue(false))
+              .Ignore(m => m.IsDeleted);
+        }
     }
+    
 }

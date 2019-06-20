@@ -34,5 +34,7 @@ namespace EShop.Web.Models
         }
 
       
+
+        //public System.Data.Entity.DbSet<EShop.Web.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }
