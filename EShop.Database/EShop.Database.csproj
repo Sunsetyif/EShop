@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201906181246146_addOrders.Designer.cs">
       <DependentUpon>201906181246146_addOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906201501560_SoftDelete.cs" />
+    <Compile Include="Migrations\201906201501560_SoftDelete.Designer.cs">
+      <DependentUpon>201906201501560_SoftDelete.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906181246146_addOrders.resx">
       <DependentUpon>201906181246146_addOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906201501560_SoftDelete.resx">
+      <DependentUpon>201906201501560_SoftDelete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

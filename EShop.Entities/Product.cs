@@ -14,8 +14,10 @@ namespace EShop.Entities
         public string ImageURL { get; set; }
         public virtual Category Category { get; set; }
         public int CategoryID { get; set; }
+
         public string Brand { get; set; }
         public string Flavor { get; set; }
         public bool IsDeleted { get; set; }
+        public DateTimeOffset? DeletedAtUtc { get; set; }
     }
 }

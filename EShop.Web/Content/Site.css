@@ -173,9 +173,6 @@ body {
     border: 1px solid #af5c37;
 }
 
-    .item-wrapper .container-fluid {
-       
-    }
 
 .item-image {
     display: -webkit-box;
@@ -388,14 +385,7 @@ body {
             flex-grow: 1;
         }
 
-            .navbar-nav > .nav-item :not(.show) {
-               
-            }
-
-            .navbar-nav > .nav-item:last-child {
-               
-            }
-
+            
     .page-header__navbar .dropdown.show {
         border-bottom: 1px solid #ffffff;
         background-color: wheat;
@@ -425,10 +415,10 @@ body {
     }
 
     /*Filtres*/
-    .sidebar-filter {
+    /*.sidebar-filter {
        
       
-    }
+    }*/
 }
 
 @media (max-width: 991px) {
