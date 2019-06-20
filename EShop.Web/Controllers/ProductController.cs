@@ -13,14 +13,14 @@ namespace EShop.Web.Controllers
     public class ProductController : Controller
     {
         //ProductService productService = new ProductService();
-       // CategoryService categoryService = new CategoryService();
+        // CategoryService categoryService = new CategoryService();
         // GET: Product
 
         public ActionResult Index()
         {
             return View();
         }
-        
+
         public ActionResult ProductTable(string search, int? pageNo)
         {
             var pageSize = ConfigurationsService.Instance.PageSize();
@@ -37,7 +37,7 @@ namespace EShop.Web.Controllers
 
             return PartialView(model);
         }
-       
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -47,7 +47,7 @@ namespace EShop.Web.Controllers
 
             return PartialView(model);
         }
-        
+
         [HttpPost]
         public ActionResult Create(NewProductViewModel model)
         {
@@ -58,10 +58,11 @@ namespace EShop.Web.Controllers
             newProduct.Category = CategoryService.Instance.GetCategory(model.CategoryID);
             newProduct.ImageURL = model.ImageURL;
 
+
             ProductService.Instance.SaveProduct(newProduct);
             return RedirectToAction("ProductTable");
         }
-       
+
         [HttpGet]
         public ActionResult Edit(int ID)
         {
@@ -76,11 +77,14 @@ namespace EShop.Web.Controllers
             model.CategoryID = product.Category != null ? product.Category.ID : 0;
             model.ImageURL = product.ImageURL;
 
+            //model.Brand = new List<string>() { "Milka", "Schogetten", "Nestlé" };
+            //model.Flavor = new List<string>() { "Dark", "Milk", "White" };
+
             model.AvailableCategories = CategoryService.Instance.GetAllCategories();
 
             return PartialView(model);
         }
-        
+
         [HttpPost]
         public ActionResult Edit(EditProductViewModel model)
         {
@@ -88,8 +92,9 @@ namespace EShop.Web.Controllers
             existingProduct.Name = model.Name;
             existingProduct.Description = model.Description;
             existingProduct.Price = model.Price;
+            
 
-            existingProduct.Category = null; //mark it null. Because the referncy key is changed below
+                existingProduct.Category = null; //mark it null. Because the referncy key is changed below
             existingProduct.CategoryID = model.CategoryID;
 
             //dont update imageURL if its empty
@@ -102,7 +107,7 @@ namespace EShop.Web.Controllers
 
             return RedirectToAction("ProductTable");
         }
-        
+
         [HttpPost]
         public ActionResult Delete(int ID)
         {
@@ -122,5 +127,6 @@ namespace EShop.Web.Controllers
 
             return View(model);
         }
+
     }
 }

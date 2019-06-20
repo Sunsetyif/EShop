@@ -20,4 +20,11 @@ namespace EShop.Web.ViewModels
         public Order Order { get; set; }
         public ApplicationUser OrderBy { get; set; }
     }
+    public class MyOrders
+    {
+        public string Status { get; set; }
+        public string UserID { get; set; }
+        public Order Order { get; set; }
+        public ApplicationUser OrderBy { get; set; }
+    }
 }

@@ -90,5 +90,14 @@ namespace EShop.Services
                 return context.SaveChanges() > 0;
             }
         }
+
+        public IEnumerable<Order> DisplayMyOrders(string usserId)
+        {
+            using (var context = new EShopContext())
+            {
+                var requests = (from r in context.Orders where r.UserID == usserId select r).ToList().OrderBy(r => r.Status);
+                return requests;
+            }
+        }
     }
 }

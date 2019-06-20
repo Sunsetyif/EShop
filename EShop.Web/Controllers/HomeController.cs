@@ -85,6 +85,13 @@ namespace EShop.Web.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Shop");
         }
+        public ActionResult MyProfile(string Id)
+        {
+
+            var context = new ApplicationDbContext();
+            var user = context.Users.Find(Id);
+            return View(user);
+        }
        
     }
 }

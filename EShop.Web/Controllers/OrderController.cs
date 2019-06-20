@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
-    [Authorize(Roles = "admin")]
+   
     public class OrderController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -40,6 +40,7 @@ namespace EShop.Web.Controllers
         }
 
         // GET: Order
+        [Authorize(Roles = "admin")]
         public ActionResult Index(string userID, string status, int? pageNo)
         {
             OrdersViewModel model = new OrdersViewModel();
@@ -56,7 +57,7 @@ namespace EShop.Web.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int ID)
         {
             OrderDetailsViewModel model = new OrderDetailsViewModel();
@@ -72,7 +73,7 @@ namespace EShop.Web.Controllers
 
             return View(model);
         }
-
+        [Authorize(Roles = "admin")]
         public JsonResult ChangeStatus(string status, int ID)
         {
             JsonResult result = new JsonResult();
@@ -81,6 +82,14 @@ namespace EShop.Web.Controllers
             result.Data = new { Success = OrdersService.Instance.UpdateOrderStatus(ID, status) };
 
             return result;
+        }
+
+      
+        public ActionResult MyOrders(string Id)
+        {
+
+            var myorders = OrdersService.Instance.DisplayMyOrders(Id);
+            return View(myorders);
         }
     }
 }

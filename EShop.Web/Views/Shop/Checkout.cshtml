@@ -20,7 +20,7 @@
                             <li class="list-group-item d-flex justify-content-between lh-condensed" data-id="@product.ID">
                                 <div>
                                     <h6 class="my-0">@i - @product.Name - Qty: @productQuantity</h6>
-                                    <small class="text-muted">@*@(product.Description.Length > 100 ? product.Description.Substring(0, 99) : product.Description)*@</small>
+                                    <small class="text-muted">@(product.Description.Length > 100 ? product.Description.Substring(0, 99) : product.Description)</small>
                                 </div>
                                 <span class="text-muted">Unit Price: $ @product.Price - Total Price: @(productQuantity * product.Price)</span>
                             </li>
