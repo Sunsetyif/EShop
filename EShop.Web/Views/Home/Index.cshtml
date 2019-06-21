@@ -2,3 +2,6 @@
     ViewBag.Title = "Home Page";
 }
 
+@{
+    Html.RenderAction("Products", "Widgets", new { isLatestProducts = true });
+}

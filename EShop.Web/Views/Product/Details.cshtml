@@ -1,0 +1,68 @@
+﻿@model EShop.Web.ViewModels.ProductViewModel
+
+@if (Model != null && Model.Product != null)
+{
+    var defaultImg = "/Content/images/default-image_493.png";
+    var imageURL = string.IsNullOrEmpty(Model.Product.ImageURL) ? defaultImg : Model.Product.ImageURL;
+
+    <article class="card card-product">
+
+        <div class="card-body">
+            <div class="row">
+                <aside class="col-sm-6">
+                    <div class="img-wrap"><img alt="File_format_invalid" src="@imageURL" /></div>
+
+                </aside> <!-- col.// -->
+                <article class="col-sm-6">
+
+                    <em>Shipping:</em>  FREE Standard International Shipping
+                    <hr />
+                    <em> Item location: </em> EUROPE, Lithuania
+
+
+                    <hr />
+                    <em>Payments:</em> <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+
+                    <hr />
+
+
+                    <p>
+                        <a href="#" class="btn btn-primary">Add to card </a>
+                        <a href="@Url.Action("Index","Shop")" class="btn btn-secondary"> Back to list </a>
+                    </p>
+                </article> <!-- col.// -->
+            </div> <!-- row.// -->
+        </div> <!-- card-body .// -->
+    </article> <!-- card product .// -->
+    <article class="card mt-3">
+        <div class="card-body">
+            <h4>Detail overview</h4>
+            <hr />
+            <p>
+
+            </p>
+            <p>
+                <h6>About product</h6>
+                <em> Name: </em>  @Model.Product.Name
+                <br />
+                <em> Description:</em> @Model.Product.Description
+                <br />
+                <em>Price:</em>  $@Model.Product.Price
+                <br />
+            </p>
+            <p>
+                <h6>About category of product</h6>
+                <em> Name:</em> @Model.Product.Category.Name
+                <br />
+                <em>Category:</em>  @Model.Product.Category.Description
+                <br />
+                <em>Featured:</em> @Model.Product.Category.isFeatured
+            </p>
+
+        </div> <!-- card-body.// -->
+    </article> <!-- card.// -->
+    <br />
+    <h4>Same products of this category</h4>
+    Html.RenderAction("Products", "Widgets", new { isLatestProducts = false, CategoryID = Model.Product.Category.ID });
+
+}

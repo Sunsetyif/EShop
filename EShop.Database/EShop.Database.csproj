@@ -61,6 +61,34 @@
     <Compile Include="Migrations\201906130826418_configurationstable.Designer.cs">
       <DependentUpon>201906130826418_configurationstable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906141643264_addedServerSideValidation.cs" />
+    <Compile Include="Migrations\201906141643264_addedServerSideValidation.Designer.cs">
+      <DependentUpon>201906141643264_addedServerSideValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906142006481_pagination.cs" />
+    <Compile Include="Migrations\201906142006481_pagination.Designer.cs">
+      <DependentUpon>201906142006481_pagination.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906161815325_FeatureCategory.cs" />
+    <Compile Include="Migrations\201906161815325_FeatureCategory.Designer.cs">
+      <DependentUpon>201906161815325_FeatureCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906171042018_AddEntitiesOrderandOrderItem.cs" />
+    <Compile Include="Migrations\201906171042018_AddEntitiesOrderandOrderItem.Designer.cs">
+      <DependentUpon>201906171042018_AddEntitiesOrderandOrderItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906181246146_addOrders.cs" />
+    <Compile Include="Migrations\201906181246146_addOrders.Designer.cs">
+      <DependentUpon>201906181246146_addOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906201501560_SoftDelete.cs" />
+    <Compile Include="Migrations\201906201501560_SoftDelete.Designer.cs">
+      <DependentUpon>201906201501560_SoftDelete.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906211621338_SoftDeleteForCategory.cs" />
+    <Compile Include="Migrations\201906211621338_SoftDeleteForCategory.Designer.cs">
+      <DependentUpon>201906211621338_SoftDeleteForCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +111,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906130826418_configurationstable.resx">
       <DependentUpon>201906130826418_configurationstable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906141643264_addedServerSideValidation.resx">
+      <DependentUpon>201906141643264_addedServerSideValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906142006481_pagination.resx">
+      <DependentUpon>201906142006481_pagination.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906161815325_FeatureCategory.resx">
+      <DependentUpon>201906161815325_FeatureCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906171042018_AddEntitiesOrderandOrderItem.resx">
+      <DependentUpon>201906171042018_AddEntitiesOrderandOrderItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906181246146_addOrders.resx">
+      <DependentUpon>201906181246146_addOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906201501560_SoftDelete.resx">
+      <DependentUpon>201906201501560_SoftDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906211621338_SoftDeleteForCategory.resx">
+      <DependentUpon>201906211621338_SoftDeleteForCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

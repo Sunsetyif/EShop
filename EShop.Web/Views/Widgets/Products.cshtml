@@ -1,0 +1,80 @@
+﻿@model EShop.Web.ViewModels.ProductWidgetVIewModels
+@{
+    Layout = null;
+    var defaultImg = "/Content/images/default-image_493.png";
+}
+@*<style>
+    .card-product {
+       
+        float: left;
+        background: #fff;
+    }
+</style>*@
+@*<script>
+    $(document).ready(function () {
+        $(".gridSelector").click(function () {
+            if ($('.card-product').hasClass('card-product')) {
+                $('.card-product').addClass('card-product col-6');
+                $('.card-product').removeClass('card-product');
+            } else {
+                $('.card-product').addClass('card-product');
+                $('.card-product').removeClass('ard-product col-6');
+            }
+            return false;
+        });
+    });
+</script>*@
+@*<div class="gridSelector">Переключаем (клик)</div>*@
+@if (Model != null && Model.Products != null)
+{
+    foreach (var product in Model.Products)
+    {
+        var imageURL = string.IsNullOrEmpty(product.ImageURL) ? defaultImg : product.ImageURL;
+
+        <article class="card card-product">
+
+            <div class="card-body">
+                <div class="row">
+                    <aside class="col-sm-6">
+                        <div class="img-wrap"><img alt="File_format_invalid" src="@imageURL" /></div>
+
+                    </aside> <!-- col.// -->
+                    <article class="col-sm-6">
+                        @*<h4 class="title">Milcka</h4>*@
+                        <p class="font-weight-bold h4">@product.Name</p>
+                        <dl class="dlist-align">
+                            <dt>Brand:</dt>
+                            <dd>Milka</dd>
+                        </dl>  <!-- item-property-hor .// -->
+                        <dl class="dlist-align">
+                            <dt>Flavor:</dt>
+                            <dd>Milk</dd>
+                        </dl>  <!-- item-property-hor .// -->
+                        <dl class="dlist-align">
+                            <dt>Category:</dt>
+                            <dd>@product.Category.Name</dd>
+
+                        </dl>  <!-- item-property-hor .// -->
+                        <dl class="dlist-align">
+                            <dt>Price:</dt>
+                            <dd class="price">$@product.Price</dd>
+
+                        </dl>  <!-- item-property-hor .// -->
+                        <hr />
+                        <p>
+                            <a href="#" class="btn btn-primary"> Buy now </a>
+                            <a href="@Url.Action("Details", "Product", new {  ID = product.ID })" class="btn btn-secondary"> Details  </a>
+                        </p>
+                    </article> <!-- col.// -->
+
+
+
+
+
+
+                </div> <!-- row.// -->
+            </div> <!-- card-body .// -->
+        </article> <!-- card product .// -->
+
+    }
+}

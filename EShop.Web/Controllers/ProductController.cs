@@ -9,51 +9,32 @@ using System.Web.Mvc;
 
 namespace EShop.Web.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ProductController : Controller
     {
         //ProductService productService = new ProductService();
-        CategoryService categoryService = new CategoryService();
+        // CategoryService categoryService = new CategoryService();
         // GET: Product
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult ProductTable(string Search,int? pageNo)
+        public ActionResult ProductTable(string search, int? pageNo)
         {
-//ProductService;
+            var pageSize = ConfigurationsService.Instance.PageSize();
+
             ProductSearchViewModel model = new ProductSearchViewModel();
-            model.PageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
-          //Equal above
-            //if (pageNo.HasValue)
-            //{
-            //    if (pageNo.Value > 0)
-            //    {
-            //        model.PageNo = pageNo.Value;
-            //    }
-            //    else
-            //    {
-            //        model.PageNo = 1;
-            //    }
-            //}
-            //else
-            //{
-            //    model.PageNo = 1;
-            //}
-            model.Products = ProductService.Instance.GetProducts(model.PageNo);
-           
-            //List<Product> products = productService.GetProducts();
-            if (string.IsNullOrEmpty(Search) == false)
-            {
-                model.SearchTerm = Search;
-                model.Products = model.Products.Where(p => p.Name != null && p.Name.ToLower().Contains(Search.ToLower())).ToList();
-                //products = products.Where(p => p.Name != null && p.Name.ToLower().Contains(Search.ToLower())).ToList();
-            }
-            //foreach (var p in products)
-            //{
-            //    if(p.Name == Search)
-            //    {  }
-            //}
+            model.SearchTerm = search;
+
+            pageNo = pageNo.HasValue ? pageNo.Value > 0 ? pageNo.Value : 1 : 1;
+
+            var totalRecords = ProductService.Instance.GetProductsCount(search);
+            model.Products = ProductService.Instance.GetProducts(search, pageNo.Value, pageSize);
+
+            model.Pager = new Pager(totalRecords, pageNo, pageSize);
+
             return PartialView(model);
         }
 
@@ -66,16 +47,17 @@ namespace EShop.Web.Controllers
 
             return PartialView(model);
         }
+
         [HttpPost]
         public ActionResult Create(NewProductViewModel model)
         {
-           // CategoryService categoryService = new CategoryService();
             var newProduct = new Product();
             newProduct.Name = model.Name;
             newProduct.Description = model.Description;
             newProduct.Price = model.Price;
-            newProduct.Category = categoryService.GetCategory(model.CategoryID);
+            newProduct.Category = CategoryService.Instance.GetCategory(model.CategoryID);
             newProduct.ImageURL = model.ImageURL;
+
 
             ProductService.Instance.SaveProduct(newProduct);
             return RedirectToAction("ProductTable");
@@ -84,22 +66,67 @@ namespace EShop.Web.Controllers
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            //EditProductViewModel model = new EditProductViewModel();
+            EditProductViewModel model = new EditProductViewModel();
+
             var product = ProductService.Instance.GetProduct(ID);
-            return PartialView(product);
-            
+
+            model.ID = product.ID;
+            model.Name = product.Name;
+            model.Description = product.Description;
+            model.Price = product.Price;
+            model.CategoryID = product.Category != null ? product.Category.ID : 0;
+            model.ImageURL = product.ImageURL;
+
+            //model.Brand = new List<string>() { "Milka", "Schogetten", "Nestlé" };
+            //model.Flavor = new List<string>() { "Dark", "Milk", "White" };
+
+            model.AvailableCategories = CategoryService.Instance.GetAllCategories();
+
+            return PartialView(model);
         }
+
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(EditProductViewModel model)
         {
-            ProductService.Instance.UpdateProduct(product);
+            var existingProduct = ProductService.Instance.GetProduct(model.ID);
+            existingProduct.Name = model.Name;
+            existingProduct.Description = model.Description;
+            existingProduct.Price = model.Price;
+            
+
+                existingProduct.Category = null; //mark it null. Because the referncy key is changed below
+            existingProduct.CategoryID = model.CategoryID;
+
+            //dont update imageURL if its empty
+            if (!string.IsNullOrEmpty(model.ImageURL))
+            {
+                existingProduct.ImageURL = model.ImageURL;
+            }
+
+            ProductService.Instance.UpdateProduct(existingProduct);
+
             return RedirectToAction("ProductTable");
         }
+
         [HttpPost]
         public ActionResult Delete(int ID)
         {
             ProductService.Instance.DeleteProduct(ID);
+
             return RedirectToAction("ProductTable");
         }
+
+        [HttpGet]
+        public ActionResult Details(int ID)
+        {
+            ProductViewModel model = new ProductViewModel();
+
+            model.Product = ProductService.Instance.GetProduct(ID);
+
+            if (model.Product == null) return HttpNotFound();
+
+            return View(model);
+        }
+
     }
 }
