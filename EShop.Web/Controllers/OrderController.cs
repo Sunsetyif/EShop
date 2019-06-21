@@ -57,7 +57,7 @@ namespace EShop.Web.Controllers
 
             return View(model);
         }
-        [Authorize(Roles = "admin")]
+        
         public ActionResult Details(int ID)
         {
             OrderDetailsViewModel model = new OrderDetailsViewModel();
@@ -87,7 +87,7 @@ namespace EShop.Web.Controllers
       
         public ActionResult MyOrders(string Id)
         {
-
+           Id =  System.Web.HttpContext.Current.User.Identity.GetUserId();
             var myorders = OrdersService.Instance.DisplayMyOrders(Id);
             return View(myorders);
         }

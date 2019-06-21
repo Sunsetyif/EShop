@@ -250,7 +250,7 @@ namespace EShop.Services
             using (var context = new EShopContext())
             {
                 var product = context.Products.Find(ID);
-                product.DeletedAtUtc = DateTime.Now;
+                product.DeletedAtUtc = DateTimeOffset.Now;
                 context.Products.Remove(product);
                 context.SaveChanges();
             }

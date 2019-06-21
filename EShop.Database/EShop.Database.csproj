@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201906201501560_SoftDelete.Designer.cs">
       <DependentUpon>201906201501560_SoftDelete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906211621338_SoftDeleteForCategory.cs" />
+    <Compile Include="Migrations\201906211621338_SoftDeleteForCategory.Designer.cs">
+      <DependentUpon>201906211621338_SoftDeleteForCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -125,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906201501560_SoftDelete.resx">
       <DependentUpon>201906201501560_SoftDelete.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906211621338_SoftDeleteForCategory.resx">
+      <DependentUpon>201906211621338_SoftDeleteForCategory.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

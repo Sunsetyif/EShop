@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace EShop.Services
 {
@@ -91,11 +92,13 @@ namespace EShop.Services
             }
         }
 
-        public IEnumerable<Order> DisplayMyOrders(string usserId)
+        public IEnumerable<Order> DisplayMyOrders(string Id)
         {
             using (var context = new EShopContext())
             {
-                var requests = (from r in context.Orders where r.UserID == usserId select r).ToList().OrderBy(r => r.Status);
+                
+                
+                var requests = (from r in context.Orders where r.UserID == Id select r).ToList().OrderBy(r => r.Status);
                 return requests;
             }
         }

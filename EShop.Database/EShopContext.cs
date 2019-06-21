@@ -29,6 +29,9 @@ namespace EShop.Database
             modelBuilder.Entity<Product>()
               .Map(m => m.Requires("IsDeleted").HasValue(false))
               .Ignore(m => m.IsDeleted);
+            modelBuilder.Entity<Category>()
+              .Map(m => m.Requires("IsDeleted").HasValue(false))
+              .Ignore(m => m.IsDeleted);
         }
 
         public override int SaveChanges()

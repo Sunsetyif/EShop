@@ -130,9 +130,10 @@ namespace EShop.Services
         {
             using (var context = new EShopContext())
             {
-                var category = context.Categories.Find(ID);
+                var category = context.Categories.Where(x => x.ID == ID).Include(x => x.Products).FirstOrDefault();
 
-                //   context.Entry(category).State = System.Data.Entity.EntityState.Deleted;
+                context.Products.RemoveRange(category.Products); //first delete products of this category
+                category.DeletedAtUtc = DateTimeOffset.Now;
                 context.Categories.Remove(category);
                 context.SaveChanges();
             }

@@ -11,5 +11,7 @@ namespace EShop.Entities
 
         public List<Product> Products { get; set; }
         public bool isFeatured { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTimeOffset? DeletedAtUtc { get; set; }
     }
 }

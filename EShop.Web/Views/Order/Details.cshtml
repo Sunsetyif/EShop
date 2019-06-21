@@ -51,17 +51,33 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="address">Status</label>
-                            <select name="Status" id="changeStatus">
-                                @foreach (var availableStatus in Model.AvailableStatuses)
-                                {
-                                    var isSelectedStatus = availableStatus == Model.Order.Status;
 
-                                    <option @(isSelectedStatus ? "selected" : string.Empty)>@availableStatus</option>
-                                }
-                            </select>
+                            @if (Request.IsAuthenticated && User.IsInRole("admin"))
+                            {
+                                <label for="address">Status</label>
+                                <select name="Status" id="changeStatus">
+
+                                    @foreach (var availableStatus in Model.AvailableStatuses)
+                                    {
+                                        var isSelectedStatus = availableStatus == Model.Order.Status;
+
+                                        <option @(isSelectedStatus ? "selected" : string.Empty)>@availableStatus</option>
+                                    }
+
+
+                                </select>
+                            }
+                            @if (Request.IsAuthenticated && !User.IsInRole("admin"))
+                            {
+                                <a href="@Url.Action("MyOrders","Order")" class="btn btn-secondary"> Back to list </a>
+                            }
+                            else
+                            {
+
+                                <a href="@Url.Action("Index","Order")" class="btn btn-secondary"> Back to list </a>
+                            }
                         </div>
-
+                            
                     </form>
                 </div>
             </div>

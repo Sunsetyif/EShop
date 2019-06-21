@@ -1,12 +1,15 @@
 ﻿using EShop.Services;
 using EShop.Web.Models;
 using EShop.Web.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -25,13 +28,13 @@ namespace EShop.Web.Controllers
         {
 
         }
-        [Authorize(Roles = "admin")]
+        
         public ActionResult Index()
         {
-            HomeViewModel model = new HomeViewModel();
+          //  HomeViewModel model = new HomeViewModel();
             //     model.FeaturedCategories = categoryService.GetFeaturedCategories();
 
-            return View(model);
+            return RedirectToAction("Index","Shop"/*model*/);
         }
 
         public ActionResult Help()
@@ -77,21 +80,26 @@ namespace EShop.Web.Controllers
             var context = new ApplicationDbContext();
             context.Entry(user).State = EntityState.Modified;
             context.SaveChanges();
-           
+
             return View(user);
         }
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+
+           
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Shop");
+
+
         }
         public ActionResult MyProfile(string Id)
         {
 
             var context = new ApplicationDbContext();
+
             var user = context.Users.Find(Id);
             return View(user);
         }
-       
+
     }
 }
